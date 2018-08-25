@@ -13,6 +13,6 @@
 
 package skaioskit
 
-func buildMySqlConnectionString(username string, password string, server string, database string) string {
+func BuildMySqlConnectionString(username string, password string, server string, database string) string {
     return username + ":" + password + "@tcp(" + server + ")/" + database + "?charset=utf8&parseTime=True&loc=Local"
 }
