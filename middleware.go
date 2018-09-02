@@ -32,6 +32,7 @@ func PanicHandler(h http.Handler) http.Handler {
                 default:
                     err = errors.New("Unknown error")
                 }
+                //TODO: Log
                 http.Error(w, err.Error(), http.StatusInternalServerError)
             }
         }()

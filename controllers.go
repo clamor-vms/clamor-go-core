@@ -62,7 +62,8 @@ func (p *ControllerProcessor) Logic(w http.ResponseWriter, r *http.Request) {
 }
 func (p *ControllerProcessor) writeJsonOutput(w http.ResponseWriter, resp ControllerResponse) {
     w.WriteHeader(resp.Status)
-    jsonResp, err := json.Marshal(resp.Body);
+    w.Header().Set("Content-Type", "application/json")
+    jsonResp, err := json.Marshal(resp.Body)
 
     if err != nil {
         w.WriteHeader(http.StatusInternalServerError)
