@@ -11,6 +11,6 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package skaioskit
+package clamor
 
 const VERSION = "0.0.1-beta"

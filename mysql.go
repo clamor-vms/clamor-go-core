@@ -11,7 +11,7 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package skaioskit
+package clamor
 
 func BuildMySqlConnectionString(username string, password string, server string, database string) string {
     return username + ":" + password + "@tcp(" + server + ")/" + database + "?charset=utf8&parseTime=True&loc=Local"
