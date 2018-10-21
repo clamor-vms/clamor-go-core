@@ -58,14 +58,18 @@ func GetJwtForRequest(r *http.Request, key []byte) (*JWTData, error) {
 func JWTEnforceMiddleware(key []byte) func(next http.Handler) http.Handler {
     return func(next http.Handler) http.Handler {
         return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-            _, err := GetJwtForRequest(r, key)
+            if r.Method == "OPTIONS" {
+                next.ServeHTTP(w, r)
+            } else {
+                _, err := GetJwtForRequest(r, key)
 
-            if err != nil {
-                http.Error(w, http.StatusText(401), 401)
-                return
+                if err != nil {
+                    http.Error(w, http.StatusText(401), 401)
+                    return
+                }
+
+                next.ServeHTTP(w, r)
             }
-
-            next.ServeHTTP(w, r)
         })
     }
 }
