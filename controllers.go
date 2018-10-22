@@ -68,11 +68,11 @@ func (p *ControllerProcessor) Logic(w http.ResponseWriter, r *http.Request) {
     p.writeJsonOutput(w, resp)
 }
 func (p *ControllerProcessor) writeJsonOutput(w http.ResponseWriter, resp ControllerResponse) {
-    w.WriteHeader(resp.Status)
     w.Header().Set("Content-Type", "application/json")
     w.Header().Set("Access-Control-Allow-Origin", "*")
     w.Header().Set("Access-Control-Allow-Methods", "POST, GET, OPTIONS, PUT, DELETE")
     w.Header().Set("Access-Control-Allow-Headers", "Accept, Content-Type, Content-Length, Accept-Encoding, X-CSRF-Token, Authorization")
+    w.WriteHeader(resp.Status)
     jsonResp, err := json.Marshal(resp.Body)
 
     if err != nil {
